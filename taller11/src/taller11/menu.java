@@ -61,5 +61,4 @@ public class menu {
         this.subtotal = subtotal;
     }
     
-    
 }
