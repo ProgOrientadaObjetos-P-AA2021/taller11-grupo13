@@ -4,62 +4,66 @@ package taller11;
  *
  * @author josep
  */
-public class menuCarta {
+public class menuCarta extends menu {
 
-    private String nombrePlato;
-    private double valorMenu;
-    private double valorInicialMenu;
     private double valorPorcionGuarnicion;
     private double valorBebida;
     private double porcentajeAdicional;
 
-    public String getNombrePlato() {
-        return nombrePlato;
+    public menuCarta(String np,  double cI, double vP, double vB) {
+        super(np, cI);
+        valorPorcionGuarnicion = vP;
+        valorBebida = vB;
+        establecerPorcentajeAdicional();
+        establecerValorMenu();
     }
 
-    public void setNombrePlato(String nombrePlato) {
-        this.nombrePlato = nombrePlato;
+    public void establecerValorPorcionGuarnicion(double n) {
+        valorPorcionGuarnicion = n;
     }
 
-    public double getValorMenu() {
-        return valorMenu;
+    public void establecerValorBebida(double n) {
+        valorBebida = n;
     }
 
-    public void setValorMenu(double valorMenu) {
-        this.valorMenu = valorMenu;
+    public void establecerPorcentajeAdicional() {
+        porcentajeAdicional = valorInicialMenu * 0.10;
     }
 
-    public double getValorInicialMenu() {
-        return valorInicialMenu;
+    @Override
+    public void establecerValorMenu() {
+        valorMenu = valorBebida + valorPorcionGuarnicion
+                + valorInicialMenu + porcentajeAdicional;
     }
 
-    public void setValorInicialMenu(double valorInicialMenu) {
-        this.valorInicialMenu = valorInicialMenu;
-    }
-
-    public double getValorPorcionGuarnicion() {
+    public double obtenerValorPorcionGuarnicion() {
         return valorPorcionGuarnicion;
     }
 
-    public void setValorPorcionGuarnicion(double valorPorcionGuarnicion) {
-        this.valorPorcionGuarnicion = valorPorcionGuarnicion;
-    }
-
-    public double getValorBebida() {
+    public double obtenerValorBebida() {
         return valorBebida;
     }
 
-    public void setValorBebida(double valorBebida) {
-        this.valorBebida = valorBebida;
-    }
-
-    public double getPorcentajeAdicional() {
+    public double obtenerPorcentajeAdicional() {
         return porcentajeAdicional;
     }
 
-    public void setPorcentajeAdicional(double porcentajeAdicional) {
-        this.porcentajeAdicional = porcentajeAdicional;
+    @Override
+    public String toString() {
+        String cadena = String.format("MENÚ A LA CARTA:\n"
+                + "Nombre del plato: %s\n"
+                + "Valor porcion de guarnicion: $%.2f\n"
+                + "Valor de bebida: $%.2f\n"
+                + "Valor inicial del menú: $%.2f"
+                + "Porcentaje de servicio: $%.2f\n"
+                + "Valor del menu: $%.2f\n-------------------\n",
+                obtenerNombrePlato(),
+                obtenerValorPorcionGuarnicion(),
+                obtenerValorBebida(),
+                obtenerValorInicialMenu(),
+                obtenerPorcentajeAdicional(),
+                obtenerValorMenu());
+        return cadena;
     }
-    
-    
+
 }

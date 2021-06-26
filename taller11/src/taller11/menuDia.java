@@ -4,54 +4,53 @@ package taller11;
  *
  * @author josep
  */
-public class menuDia {
-    
-    private String nombrePlato;
-    private double valorMenu;
-    private double valorInicialMenu;
-    private double valorPostre;
-    private double valorBebida;
+public class menuDia extends menu {
 
-    public String getNombrePlato() {
-        return nombrePlato;
+    private double valPostre;
+    private double valBebida;
+
+    public menuDia(String n,double v, double vP, double vB) {
+        super(n, v);
+        valPostre = vP;
+        valBebida = vB;
+        establecerValorMenu();
     }
 
-    public void setNombrePlato(String nombrePlato) {
-        this.nombrePlato = nombrePlato;
+    public void establecerValPostre(double vP) {
+        valPostre = vP;
     }
 
-    public double getValorMenu() {
-        return valorMenu;
+    public void establecerValDeBebida(double vB) {
+        valBebida = vB;
     }
 
-    public void setValorMenu(double valorMenu) {
-        this.valorMenu = valorMenu;
+    @Override
+    public void establecerValorMenu() {
+        valorMenu = valorInicialMenu + valBebida + valPostre;
     }
 
-    public double getValorInicialMenu() {
-        return valorInicialMenu;
+    public double obtenerValPostre() {
+        return valPostre;
     }
 
-    public void setValorInicialMenu(double valorInicialMenu) {
-        this.valorInicialMenu = valorInicialMenu;
+    public double obtenerValBebida() {
+        return valBebida;
     }
 
-    public double getValorPostre() {
-        return valorPostre;
+    @Override
+    public String toString() {
+        String cadena = String.format("MENÚ DEL DÍA:\n"
+                + "Nombre del plato: %s\n"
+                + "Postre: $%.2f\n"
+                + "Bebida: $%.2f\n"
+                + "Valor inicial del menú: $%.2f\n"
+                + "valor del menú: $%.2f\n-------------------\n",
+                obtenerNombrePlato(),
+                obtenerValPostre(),
+                obtenerValBebida(),
+                obtenerValorInicialMenu(),
+                obtenerValorMenu());
+        return cadena;
     }
 
-    public void setValorPostre(double valorPostre) {
-        this.valorPostre = valorPostre;
-    }
-
-    public double getValorBebida() {
-        return valorBebida;
-    }
-
-    public void setValorBebida(double valorBebida) {
-        this.valorBebida = valorBebida;
-    }
-    
-    
-           
 }

@@ -4,44 +4,35 @@ package taller11;
  *
  * @author josep
  */
-public class menuEconomico {
-    
-    private String nombrePlato;
-    private double valorMenu;
-    private double valorInicialMenu;
-    private double porcentajeDescuento; 
+public class menuEconomico extends menu {
 
-    public String getNombrePlato() {
-        return nombrePlato;
+    private double porcentajeDescuento;
+
+    public menuEconomico(String n, double v) {
+        super(n, v);
+        establecerPorcentajeDescuento();
+        establecerValorMenu();
     }
 
-    public void setNombrePlato(String nombrePlato) {
-        this.nombrePlato = nombrePlato;
+    public void establecerPorcentajeDescuento() {
+        porcentajeDescuento = valorInicialMenu * 0.50;
     }
 
-    public double getValorMenu() {
-        return valorMenu;
+    @Override
+    public void establecerValorMenu() {
+        valorMenu = valorInicialMenu - porcentajeDescuento;
     }
 
-    public void setValorMenu(double valorMenu) {
-        this.valorMenu = valorMenu;
-    }
-
-    public double getValorInicialMenu() {
-        return valorInicialMenu;
-    }
-
-    public void setValorInicialMenu(double valorInicialMenu) {
-        this.valorInicialMenu = valorInicialMenu;
-    }
-
-    public double getPorcentajeDescuento() {
+    public double obtenerPorcentajeDescuento() {
         return porcentajeDescuento;
     }
 
-    public void setPorcentajeDescuento(double porcentajeDescuento) {
-        this.porcentajeDescuento = porcentajeDescuento;
+    @Override
+    public String toString() {
+        String cadena = String.format("Menu Economico:\n%s"
+                + "Descuento: $%.2f\n-------------------\n", super.toString(),
+                obtenerPorcentajeDescuento());
+        return cadena;
     }
-    
-    
+
 }

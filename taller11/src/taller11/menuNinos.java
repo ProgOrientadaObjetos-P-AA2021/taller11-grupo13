@@ -4,53 +4,52 @@ package taller11;
  *
  * @author josep
  */
-public class menuNinos {
-    
-    private String nombrePlato;
-    private double valorMenu;
-    private double valorInicialMenu;
-    private double valorPorcionHelado;
-    private double valorPorcionPastel;
+public class menuNinos extends menu {
 
-    public String getNombrePlato() {
-        return nombrePlato;
+    private double valorHelado;
+    private double valorPastel;
+
+    public menuNinos(String n, double v, double vH, double vP) {
+        super(n, v);
+        valorHelado = vH;
+        valorPastel = vP;
+        establecerValorMenu();
     }
 
-    public void setNombrePlato(String nombrePlato) {
-        this.nombrePlato = nombrePlato;
+    @Override
+    public void establecerValorMenu() {
+        valorMenu = valorInicialMenu + valorHelado + valorPastel;
     }
 
-    public double getValorMenu() {
-        return valorMenu;
+    public void establecerValorHelado(double vH) {
+        valorHelado = vH;
     }
 
-    public void setValorMenu(double valorMenu) {
-        this.valorMenu = valorMenu;
+    public void establecerValorPastel(double vP) {
+        valorPastel = vP;
     }
 
-    public double getValorInicialMenu() {
-        return valorInicialMenu;
+    public double obtenerValorHelado() {
+        return valorHelado;
     }
 
-    public void setValorInicialMenu(double valorInicialMenu) {
-        this.valorInicialMenu = valorInicialMenu;
+    public double obtenerValorPastel() {
+        return valorPastel;
     }
 
-    public double getValorPorcionHelado() {
-        return valorPorcionHelado;
+    @Override
+    public String toString() {
+        String cadena = String.format("MENÚ DE NIÑO:\n"
+                + "Nombre del plato: %s\n"
+                + "Porción Helado: $%.2f\n"
+                + "Porción pastel: $%.2f\n"
+                + "Valor inicial del menú: $%.2f\n"
+                + "Valor del menú: $%.2f\n-------------------\n",
+                obtenerNombrePlato(),
+                obtenerValorHelado(),
+                obtenerValorPastel(),
+                obtenerValorInicialMenu(),
+                obtenerValorMenu());
+        return cadena;
     }
-
-    public void setValorPorcionHelado(double valorPorcionHelado) {
-        this.valorPorcionHelado = valorPorcionHelado;
-    }
-
-    public double getValorPorcionPastel() {
-        return valorPorcionPastel;
-    }
-
-    public void setValorPorcionPastel(double valorPorcionPastel) {
-        this.valorPorcionPastel = valorPorcionPastel;
-    }
-    
-    
 }

@@ -4,61 +4,48 @@ package taller11;
  *
  * @author josep
  */
-public class menu {
-    
-    
-    private String nombreCliente;
-    private String listadoMenu;
-    private double valorTotal;
-    private double subtotal;
-    private double Iva;
+public abstract class menu {
 
-    public menu(String nombreCliente, String listadoMenu, double valorTotal, double subtotal, double Iva) {
-        this.nombreCliente = nombreCliente;
-        this.listadoMenu = listadoMenu;
-        this.valorTotal = valorTotal;
-        this.subtotal = subtotal;
-        this.Iva = Iva;
+    protected String nombrePlato;
+    protected double valorMenu;
+    protected double valorInicialMenu;
+
+    public menu(String nombre, Double valorI) {
+        nombrePlato = nombre;
+        valorInicialMenu = valorI;
     }
 
-    public double getIva() {
-        return Iva;
+    public void establecerNombrePlato(String nombre) {
+        nombrePlato = nombre;
     }
 
-    public void setIva(double Iva) {
-        this.Iva = Iva;
+    public abstract void establecerValorMenu();
+
+    public void establecerValorInicialMenu(double i) {
+        valorInicialMenu = i;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String obtenerNombrePlato() {
+        return nombrePlato;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+    public double obtenerValorMenu() {
+        return valorMenu;
     }
 
-    public String getListadoMenu() {
-        return listadoMenu;
+    public double obtenerValorInicialMenu() {
+        return valorInicialMenu;
     }
 
-    public void setListadoMenu(String listadoMenu) {
-        this.listadoMenu = listadoMenu;
+    @Override
+    public String toString() {
+        String cadena = String.format("Nombre del plato: %s\n"
+                + "Valor inicial del menú: %.2f\n"
+                + "Valor del menú: %.2f\n-------------------\n", 
+                obtenerNombrePlato(),
+                obtenerValorInicialMenu(), 
+                obtenerValorMenu());
+        return cadena;
     }
 
-    public double getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-    public double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-    
 }
